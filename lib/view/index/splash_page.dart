@@ -48,9 +48,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _initSplash() {
-    _subscription = Observable.just(1)
-        .delay(Duration(milliseconds: 1500))
-        .listen((_) async {
+    _subscription = Observable.just(1).delay(Duration(milliseconds: 1500)).listen((_) async {
       if (SpUtil.getBool(Config.key_guide, defValue: true)) {
         SpUtil.putBool(Config.key_guide, false);
         _initGuide();

@@ -57,7 +57,7 @@ class PageBuildingWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SvgPicture.asset(
-              ImageUtil.getImgSvgPath("0_hint"),
+              ImageUtil.getImgSvgPath("hint"),
               width: 80,
               height: 80,
             ),

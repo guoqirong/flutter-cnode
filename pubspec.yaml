@@ -45,6 +45,13 @@ dependencies:
   pull_to_refresh: ^1.5.8
   # 闪光效果
   shimmer: ^1.1.1
+  # 滑动列表项之间
+  flutter_slidable: ^0.5.4
+  # sliver_animated_list: ^1.0.0+2
+  # Html Encoder/Decoder
+  html_unescape: ^1.0.1+3
+  # 扫码工具
+  qrscan: ^0.2.17
 
 dev_dependencies:
   flutter_test:
