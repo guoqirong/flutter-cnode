@@ -5,8 +5,7 @@ class SkeletonBox extends StatelessWidget {
   final double height;
   final bool isCircle;
 
-  SkeletonBox(
-      {@required this.width, @required this.height, this.isCircle: false});
+  SkeletonBox({@required this.width, @required this.height, this.isCircle: false});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +25,12 @@ class SkeletonDecoration extends BoxDecoration {
     isCircle: false,
     isDark: false,
   }) : super(
-          color: !isDark ? Colors.grey[350] : Colors.grey[700],
-          shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
-        );
+    color: !isDark ? Colors.grey[350] : Colors.grey[700],
+    shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
+  );
 }
 
 /// 骨架屏 元素背景 ->形状及颜色
 class BottomBorderDecoration extends BoxDecoration {
-  BottomBorderDecoration()
-      : super(border: Border(bottom: BorderSide(width: 0.3)));
+  BottomBorderDecoration() : super(border: Border(bottom: BorderSide(width: 0.3)));
 }

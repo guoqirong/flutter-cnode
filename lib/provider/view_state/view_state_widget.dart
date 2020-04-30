@@ -19,13 +19,13 @@ class ViewStateWidget extends StatelessWidget {
   final Widget buttonText;
   final VoidCallback onPressed;
 
-  ViewStateWidget(
-      {Key key,
-      this.image,
-      this.message,
-      this.buttonText,
-      @required this.onPressed})
-      : super(key: key);
+  ViewStateWidget({
+    Key key,
+    this.image,
+    this.message,
+    this.buttonText,
+    @required this.onPressed
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +36,16 @@ class ViewStateWidget extends StatelessWidget {
         children: <Widget>[
           //image ?? Icon(Icons.error, size: 80, color: Colors.grey[500]),
           image ?? SvgPicture.asset(
-              ImageUtil.getImgSvgPath("0_hint"),
-              width: 80,
-              height: 80,
+            ImageUtil.getImgSvgPath("hint"),
+            width: 80,
+            height: 80,
+            color: Colors.orange,
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 20, 30, 150),
             child: Text(
               message ?? "加载失败",
-              style: Theme.of(context)
-                  .textTheme
-                  .body1
-                  .copyWith(color: Colors.grey),
+              style: Theme.of(context).textTheme.body1.copyWith(color: Colors.grey),
             ),
           ),
           ViewStateButton(
@@ -67,30 +65,28 @@ class ViewStateEmptyWidget extends StatelessWidget {
   final Widget buttonText;
   final VoidCallback onPressed;
 
-  const ViewStateEmptyWidget(
-      {Key key,
-      this.image,
-      this.message,
-      this.buttonText,
-      @required this.onPressed})
-      : super(key: key);
+  const ViewStateEmptyWidget({
+    Key key,
+    this.image,
+    this.message,
+    this.buttonText,
+    @required this.onPressed
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewStateWidget(
       onPressed: this.onPressed,
-      image: image ??
-          const Icon(
-            Icons.autorenew,
-            size: 100,
-            color: Colors.grey,
-          ),
+      image: image ?? const Icon(
+        Icons.autorenew,
+        size: 100,
+        color: Colors.grey,
+      ),
       message: message ?? '暂无数据',
-      buttonText: buttonText ??
-          Text(
-            '刷新一下',
-            style: TextStyle(letterSpacing: 5),
-          ),
+      buttonText: buttonText ?? Text(
+        '刷新一下',
+        style: TextStyle(letterSpacing: 5),
+      ),
     );
   }
 }
@@ -100,10 +96,10 @@ class ViewStateEmptyWidget extends StatelessWidget {
 class ViewStateEmptyPermissionWidget extends StatelessWidget {
   final String message;
 
-  const ViewStateEmptyPermissionWidget(
-      {Key key,
-      this.message})
-      : super(key: key);
+  const ViewStateEmptyPermissionWidget({
+    Key key,
+    this.message
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -133,13 +129,13 @@ class ViewStateUnAuthWidget extends StatelessWidget {
   final Widget buttonText;
   final VoidCallback onPressed;
 
-  const ViewStateUnAuthWidget(
-      {Key key,
-      this.image,
-      this.message,
-      this.buttonText,
-      @required this.onPressed})
-      : super(key: key);
+  const ViewStateUnAuthWidget({
+    Key key,
+    this.image,
+    this.message,
+    this.buttonText,
+    @required this.onPressed
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -147,11 +143,10 @@ class ViewStateUnAuthWidget extends StatelessWidget {
       onPressed: this.onPressed,
       image: image ?? ViewStateUnAuthImage(),
       message: message ?? '未登录',
-      buttonText: buttonText ??
-          Text(
-            '登录',
-            style: TextStyle(wordSpacing: 5),
-          ),
+      buttonText: buttonText ?? Text(
+        '登录',
+        style: TextStyle(wordSpacing: 5),
+      ),
     );
   }
 }
@@ -184,11 +179,10 @@ class ViewStateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlineButton(
-      child: child ??
-          Text(
-            '重试',
-            style: TextStyle(wordSpacing: 5),
-          ),
+      child: child ?? Text(
+        '重试',
+        style: TextStyle(wordSpacing: 5),
+      ),
       textColor: Colors.grey,
       splashColor: Theme.of(context).splashColor,
       onPressed: onPressed,

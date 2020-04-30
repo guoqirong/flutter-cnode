@@ -5,9 +5,9 @@ class IndexModel extends ViewStateRefreshListViewModel {
 
   @override
   Future<List> loadData({int pageNum}) async {
-    Map<String, dynamic> data = await IndexResp.findList();
+    Map<String, dynamic> data = await IndexResp.findList(page);
     if(data['success']){
-      return data['list'];
+      return data['data'];
     }else{
       return [];
     }

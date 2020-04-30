@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cnode/widget/skeleton/skeleton.dart';
 
 
-class SkeletonListItem extends StatelessWidget {
+class SkeletonUser extends StatelessWidget {
   final int index;
 
-  SkeletonListItem({this.index: 0});
+  SkeletonUser({this.index: 0});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,42 @@ class SkeletonListItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          index == 0 ? Container(
+            height: 240,
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.only(top: 24),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: 96,
+                  width: 96,
+                  margin: EdgeInsets.only(bottom: 26),
+                  decoration: SkeletonDecoration(isCircle: true, isDark: isDark),
+                ),
+                Container(
+                  height: 20,
+                  width: 90,
+                  margin: EdgeInsets.only(bottom: 26),
+                  decoration: SkeletonDecoration(isDark: isDark),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      height: 28,
+                      width: 100,
+                      decoration: SkeletonDecoration(isDark: isDark),
+                    ),
+                    Container(
+                      height: 28,
+                      width: 100,
+                      decoration: SkeletonDecoration(isDark: isDark),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ) : SizedBox(),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[

@@ -30,7 +30,6 @@ class DioUtils {
         // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
         return true;
       },
-//      contentType: ContentType('application', 'x-www-form-urlencoded', charset: 'utf-8'),
     );
     _dio = Dio(options);
     /// 适配数据(根据自己的数据结构，可自行选择添加)
@@ -68,12 +67,19 @@ class DioUtils {
     dynamic params, Map<String, dynamic> queryParameters, 
     CancelToken cancelToken, Options options, bool isList: false
   }) async {
+    // 接口访问
     String m = _getRequestMethod(method);
+    debugPrint(url);
+    debugPrint(m);
+    debugPrint(params.toString());
+    debugPrint(queryParameters.toString());
     return await _request(m, url,
       data: params,
       queryParameters: queryParameters,
       options: options,
       cancelToken: cancelToken).then((Map<String, dynamic> result) {
+      // 返回数据处理
+      print(result.toString());
       if (result['success']){
         if (isList){
           if (onSuccessList != null){
@@ -90,6 +96,7 @@ class DioUtils {
         return result;
       }
     }, onError: (e, _){
+      // 错误处理
       _cancelLogPrint(e, url);
       NetError error = DioErrorCode.handleException(e);
       _onError(error.code, error.msg, onError);
