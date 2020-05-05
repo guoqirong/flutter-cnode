@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_cnode/view/collect/index_page.dart';
+import 'package:flutter_cnode/view/index/index_detail.dart';
 import 'package:flutter_cnode/view/index/index_page.dart';
 import 'package:flutter_cnode/view/index/splash_page.dart';
 import 'package:flutter_cnode/view/login/login_form_page.dart';
+import 'package:flutter_cnode/view/message/index_page.dart';
 import 'package:flutter_cnode/view/user/index_page.dart';
 import 'package:flutter_cnode/widget/animated/animated_page_route.dart';
 import 'package:flutter_cnode/widget/handel_widget.dart';
@@ -11,8 +14,10 @@ class RouteName {
   static const String splash = '/view/index/splash_page';
   static const String index = '/view/index/index_page';
   static const String index_detail = '/view/index/index_detail_page';
-  static const String login_form = '/view/index/login_form_page';
-  static const String user_index = '/view/index/inde_detail_page';
+  static const String login_form = '/view/login/login_form_page';
+  static const String user_index = '/view/user/index_page';
+  static const String collect_index = '/view/collect/index_page';
+  static const String message_index = '/view/message/index_page';
 }
 
 class Router{
@@ -20,12 +25,23 @@ class Router{
     switch (settings.name) {
       case RouteName.splash:
         return NoAnimRouteBuilder(SplashPage());
+      
       case RouteName.index:
         return CupertinoPageRoute(fullscreenDialog: true, builder: (_) => IndexPage());
+      case RouteName.index_detail:
+        String id = settings.arguments as String;
+        return NoAnimRouteBuilder(IndexViewDetailPage(id));
+      
       case RouteName.login_form:
         return NoAnimRouteBuilder(LoginFormPage());
       case RouteName.user_index:
         return CupertinoPageRoute(fullscreenDialog: true, builder: (_) => UserIndexPage());
+      
+      case RouteName.collect_index:
+        return CupertinoPageRoute(fullscreenDialog: true, builder: (_) => CollectIndexPage());
+      
+      case RouteName.message_index:
+        return CupertinoPageRoute(fullscreenDialog: true, builder: (_) => MessageIndexPage());
       
       default:
         print(settings.name);

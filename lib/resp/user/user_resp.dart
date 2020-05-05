@@ -32,21 +32,4 @@ class UserResp {
       return null;
     }
   }
-
-  static Future<Map<String, dynamic>> findUserMeaaageCount(token) async {
-    try {
-      var data = await DioUtils().requestNetwork(
-        Method.get,
-        Api.apiMessageCount,
-        queryParameters: {
-          'accesstoken': token,
-        },
-        isList: false,
-      );
-      return data;
-    } catch (e) {
-      print(e);
-      return null;
-    }
-  }
 }

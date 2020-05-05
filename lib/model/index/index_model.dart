@@ -12,5 +12,4 @@ class IndexModel extends ViewStateRefreshListViewModel {
       return [];
     }
   }
-
 }
