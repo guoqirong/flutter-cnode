@@ -1,139 +1,68 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_cnode/config/config.dart';
 import 'package:flutter_cnode/config/constants.dart';
-import 'package:flutter_cnode/model/index/index_model.dart';
+import 'package:flutter_cnode/model/collect/collect_model.dart';
 import 'package:flutter_cnode/provider/provider_widget.dart';
 import 'package:flutter_cnode/provider/view_state/view_state_widget.dart';
 import 'package:flutter_cnode/routers/router.dart';
-import 'package:flutter_cnode/utils/toast_util.dart';
-import 'package:flutter_cnode/view/index/drawer/index.dart';
 import 'package:flutter_cnode/widget/animated/refresh_animatedlist.dart';
-import 'package:flutter_cnode/widget/refresh.dart';
 import 'package:flutter_cnode/widget/skeleton/skeleton_list.dart';
 import 'package:flutter_cnode/widget/skeleton/skeleton_list_item.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class IndexPage extends StatefulWidget {
-  IndexPage({Key key, this.title:'全部'}) : super(key: key);
-  final String title;
+class CollectIndexPage extends StatefulWidget {
+  CollectIndexPage({Key key}) : super(key: key);
 
   @override
-  _IndexPageState createState() => _IndexPageState();
+  _CollectIndexPageState createState() => _CollectIndexPageState();
 }
 
-class _IndexPageState extends State<IndexPage> with AutomaticKeepAliveClientMixin {
-  final GlobalKey<SliverAnimatedListState> listKey = GlobalKey<SliverAnimatedListState>();
-  String title;
-  DateTime _lastPressedTime;
-  
-  @override
-  bool get wantKeepAlive => true;
-
+class _CollectIndexPageState extends State<CollectIndexPage> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-    return ProviderWidget<IndexModel>(
-      model: IndexModel(),
+    return ProviderWidget<CollectModel>(
+      model: CollectModel(),
       onModelReady: (model) {
-        model.page['filterMap'] = {'tab': 'all'};
         model.initData();
       },
       builder: (context, model, child) {
         return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text(this.title??widget.title),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.star),
-                onPressed: () {
-                  if (SpUtil.getString(Config.access_token) != null && SpUtil.getString(Config.access_token) != '') {
-                    Navigator.of(context).pushNamed(RouteName.collect_index);
-                  } else {
-                    Navigator.of(context).pushNamed(RouteName.login_form);
-                  }
-                },
-              ),
-            ],
-          ),
-          drawer: Drawer(
-            child: MyDrawer(
-              onClickTab: (val) {
-                setState(() {
-                  title = val == 'good' ? '精华' : val == 'share' ? '分享' :
-                  val == 'ask' ? '问答' : val == 'job' ? '招聘' : val == 'dev' ? '客户端测试' : '全部';
-                });
-                model.page['filterMap'] = {'tab': val};
-                model.initData();
-              },
-            ),
-          ),
-          body: WillPopScope(
-            onWillPop: () async {
-              if (_lastPressedTime == null ||
-                  DateTime.now().difference(_lastPressedTime) > Duration(seconds: 1)) {
-                //两次点击间隔超过1秒则重新计时
-                _lastPressedTime = DateTime.now();
-                ToastUtil.show("再次点击退出应用", duration: 1000);
-                return false;
-              }
-              ToastUtil.cancelToast();
-              SystemNavigator.pop();
-              return false;
-            },
-            child: Consumer<IndexModel>(
-              builder: (context, model, child) {
-                if (model.busy) {
-                  return SkeletonList(
-                    builder: (context, index) => SkeletonListItem(),
-                  );
-                } else if (model.error) {
-                  return ViewStateWidget(onPressed: model.initData);
-                } else if (model.empty) {
-                  return ViewStateEmptyWidget(onPressed: model.initData);
-                }
-                return SmartRefresher(
-                  controller: model.refreshController,
-                  header: CommonRefreshHeader(),
-                  footer: CommonRefreshFooter(),
-                  onRefresh: () async {
-                    await model.refresh();
-                    listKey.currentState.refresh(model.list.length);
-                  },
-                  onLoading: () async {
-                    await model.loadMore();
-                    listKey.currentState.refresh(model.list.length);
-                  },
-                  enablePullUp: true,
-                  child: CustomScrollView(
-                    slivers: <Widget>[
-                      SliverAnimatedList(
-                        key: listKey,
-                        initialItemCount: model.list.length,
-                        itemBuilder: (context, index, animation) {
-                          var item = model.list[index];
-                          return Slidable(
-                            actionPane: SlidableDrawerActionPane(),
-                            secondaryActions: <Widget>[],
-                            child: SizeTransition(
-                              axis: Axis.vertical,
-                              sizeFactor: animation,
-                              child: IndexListItemWidget(
-                                item,
-                              )
-                            ),
-                          );
-                        }
-                      )
-                    ],
-                  ),
+          appBar: AppBar(title: Text('我的收藏')),
+          body: Consumer<CollectModel>(
+            builder: (context, model, child) {
+              if (model.busy) {
+                return SkeletonList(
+                  builder: (context, index) => SkeletonListItem(index: index),
                 );
+              } else if (model.error) {
+                return ViewStateWidget(onPressed: model.initData);
+              } else if (model.empty) {
+                return ViewStateEmptyWidget(onPressed: model.initData);
               }
-            ),
+              print(model.list);
+              return CustomScrollView(
+                slivers: <Widget>[
+                  SliverAnimatedList(
+                    initialItemCount: model.list.length,
+                    itemBuilder: (context, index, animation) {
+                      var item = model.list[index];
+                      return Slidable(
+                        actionPane: SlidableDrawerActionPane(),
+                        secondaryActions: <Widget>[],
+                        child: SizeTransition(
+                          axis: Axis.vertical,
+                          sizeFactor: animation,
+                          child: CollectListItemWidget(
+                            item,
+                          )
+                        ),
+                      );
+                    }
+                  )
+                ],
+              );
+            }
           ),
         );
       }
@@ -141,9 +70,9 @@ class _IndexPageState extends State<IndexPage> with AutomaticKeepAliveClientMixi
   }
 }
 
-class IndexListItemWidget extends StatelessWidget {
+class CollectListItemWidget extends StatelessWidget {
   final item;
-  IndexListItemWidget(this.item);
+  CollectListItemWidget(this.item);
   @override
   Widget build(BuildContext context) {
     var backgroundColor = Theme.of(context).scaffoldBackgroundColor;

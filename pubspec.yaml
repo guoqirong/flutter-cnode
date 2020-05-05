@@ -52,6 +52,8 @@ dependencies:
   html_unescape: ^1.0.1+3
   # 扫码工具
   qrscan: ^0.2.17
+  # 富文本html代码解析
+  flutter_html: ^0.11.1
 
 dev_dependencies:
   flutter_test:

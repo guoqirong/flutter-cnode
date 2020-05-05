@@ -22,14 +22,14 @@ class IndexResp {
     }
   }
 
-  static Future<Map<String, dynamic>> findDetail(pragma) async {
+  static Future<Map<String, dynamic>> findDetail(params) async {
     try {
       var data = await DioUtils().requestNetwork(
         Method.get,
-        '${Api.apiTopic}${pragma["id"]}',
+        '${Api.apiTopic}${params["id"]}',
         queryParameters: {
-          'accesstoken': pragma['accesstoken'],
-          'mdrender': pragma['mdrender']??true
+          'accesstoken': params['accesstoken'],
+          'mdrender': params['mdrender']??true
         },
         isList: false
       );

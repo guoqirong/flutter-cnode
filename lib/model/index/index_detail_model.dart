@@ -1,15 +1,10 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter_cnode/config/config.dart';
-import 'package:flutter_cnode/provider/view_state/view_state_refresh_list_view_model.dart';
+import 'package:flutter_cnode/provider/view_state/view_state_view_model.dart';
 import 'package:flutter_cnode/resp/index/index_resp.dart';
 
-class IndexDetailViewModel extends ViewStateRefreshListViewModel {
+class IndexDetailModel extends ViewStateViewModel {
   Map indexDetail;
-
-  @override
-  Future<List> loadData({int pageNum}) {
-    return null;
-  }
 
   Future<Map> findData(String id) async {
     setBusy(true);
@@ -27,5 +22,4 @@ class IndexDetailViewModel extends ViewStateRefreshListViewModel {
     }
     return indexDetail;
   }
-
 }

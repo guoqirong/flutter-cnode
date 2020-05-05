@@ -1,6 +1,7 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cnode/config/config.dart';
+import 'package:flutter_cnode/model/message/message_model.dart';
 import 'package:flutter_cnode/model/user/user_model.dart';
 import 'package:flutter_cnode/routers/router.dart';
 import 'package:flutter_cnode/utils/image_util.dart';
@@ -152,6 +153,18 @@ class _MyDrawerState extends State<MyDrawer> {
               ],
             ),
           ),
+          onTap: () async {
+            if (SpUtil.getString(Config.access_token) != null && SpUtil.getString(Config.access_token) != '') {
+              await Navigator.of(context).pushNamed(RouteName.message_index);
+              await MessageModel().findMessageCount(token: SpUtil.getString(Config.access_token));
+              setState(() { });
+            } else {
+              await Navigator.of(context).pushNamed(RouteName.login_form);
+              setState(() {
+                userSimpleData = SpUtil.getObject('userSimpleDate');
+              });
+            }
+          },
         ),
       ],
     );
