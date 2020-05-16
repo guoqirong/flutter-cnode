@@ -109,8 +109,8 @@ class _MessageListState extends State<MessageList> with AutomaticKeepAliveClient
           children: <Widget>[
             ListTile(
               leading: Container(
-                width: 48,
-                height: 48,
+                width: ScreenUtil.getScaleW(context, 36),
+                height: ScreenUtil.getScaleH(context, 36),
                 margin: EdgeInsets.only(right: 10, bottom: 10),
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(v['author']['avatar_url']),
@@ -135,7 +135,7 @@ class _MessageListState extends State<MessageList> with AutomaticKeepAliveClient
                 data: dataContent,
                 useRichText: true,
                 defaultTextStyle: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: ScreenUtil.getScaleSp(context, 14.0),
                   color: Colors.black,
                   decoration: TextDecoration.none,
                 ),

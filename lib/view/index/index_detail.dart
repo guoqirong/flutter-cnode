@@ -50,7 +50,7 @@ class _IndexViewDetailPageState extends State<IndexViewDetailPage> {
                   title: Text(
                     model.indexDetail['title']??Constants.empty_string,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: ScreenUtil.getScaleSp(context, 18),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -89,21 +89,21 @@ class _IndexViewDetailPageState extends State<IndexViewDetailPage> {
                   data: content,
                   useRichText: true,
                   defaultTextStyle: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: ScreenUtil.getScaleSp(context, 14.0),
                     color: Colors.black,
                     decoration: TextDecoration.none,
                   ),
                 ),
               ),
-              ListTile(
+              model.indexDetail['replies'] != null && model.indexDetail['replies'].length > 0 ? ListTile(
                 title: Text(
                   '评论',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: ScreenUtil.getScaleSp(context, 18),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
+              ) : SizedBox(),
               Column(
                 children: model.indexDetail['replies'] != null && model.indexDetail['replies'].length > 0 ? List<Widget>.from(model.indexDetail['replies'].map((v) {
                   var repliesContent = v['content'].replaceAll(new RegExp(r'\bsrc\b\s*=\s*["]?//'), ' src="http://');
@@ -115,8 +115,8 @@ class _IndexViewDetailPageState extends State<IndexViewDetailPage> {
                       children: <Widget>[
                         ListTile(
                           leading: Container(
-                            width: 48,
-                            height: 48,
+                            width: ScreenUtil.getScaleW(context, 36),
+                            height: ScreenUtil.getScaleH(context, 36),
                             margin: EdgeInsets.only(right: 10, bottom: 10),
                             child: CircleAvatar(
                               backgroundImage: NetworkImage(v['author']['avatar_url']),
@@ -131,7 +131,7 @@ class _IndexViewDetailPageState extends State<IndexViewDetailPage> {
                             data: repliesContent,
                             useRichText: true,
                             defaultTextStyle: TextStyle(
-                              fontSize: 18.0,
+                              fontSize: ScreenUtil.getScaleSp(context, 14.0),
                               color: Colors.black,
                               decoration: TextDecoration.none,
                             ),
