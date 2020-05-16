@@ -103,8 +103,8 @@ class CollectListItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 48,
-                        height: 48,
+                        width: ScreenUtil.getScaleW(context, 36),
+                        height: ScreenUtil.getScaleH(context, 36),
                         margin: EdgeInsets.only(right: 10, bottom: 10),
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(item['author']['avatar_url']),
@@ -118,7 +118,7 @@ class CollectListItemWidget extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: ScreenUtil.getScaleSp(context, 18),
                             ),
                           ),
                         ),
@@ -128,7 +128,7 @@ class CollectListItemWidget extends StatelessWidget {
                         child: Text(
                           item['reply_count'] != null ? item['reply_count'].toString() : Constants.empty_string,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: ScreenUtil.getScaleSp(context, 16),
                           ),
                         ),
                       ),
@@ -137,7 +137,7 @@ class CollectListItemWidget extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Container(
-                        width: 48,
+                        width: ScreenUtil.getScaleW(context, 36),
                         padding: EdgeInsets.all(4),
                         margin: EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
@@ -164,7 +164,7 @@ class CollectListItemWidget extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: ScreenUtil.getScaleSp(context, 12),
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -175,7 +175,7 @@ class CollectListItemWidget extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: ScreenUtil.getScaleSp(context, 14),
                             color: Colors.grey[500],
                           ),
                         ),
@@ -185,7 +185,7 @@ class CollectListItemWidget extends StatelessWidget {
                         child: Text(
                           item['visit_count'] != null ? item['visit_count'].toString() : Constants.empty_string,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: ScreenUtil.getScaleSp(context, 12),
                             fontWeight: FontWeight.bold,
                             color: Colors.grey[500],
                           ),

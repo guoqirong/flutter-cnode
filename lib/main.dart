@@ -1,3 +1,4 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cnode/model/index/index_model.dart';
 import 'package:flutter_cnode/routers/router.dart';
@@ -12,6 +13,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.getInstance();
     return OKToast(
       child: MultiProvider(
         providers: providers,

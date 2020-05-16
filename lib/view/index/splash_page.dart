@@ -77,9 +77,9 @@ class _SplashPageState extends State<SplashPage> {
       child: Material(
         child: _status == 0 ? Image.asset(
           ImageUtil.getImgPath('app_splash_0'),
-          width: double.infinity,
+          width: ScreenUtil.getScaleW(context, double.infinity),
           fit: BoxFit.fitWidth,
-          height: double.infinity,
+          height: ScreenUtil.getScaleH(context, double.infinity),
         ) : Swiper(
           key: const Key('swiper'),
           itemCount: _guideList.length,
@@ -89,8 +89,8 @@ class _SplashPageState extends State<SplashPage> {
               _guideList[index],
               key: Key(_guideList[index]),
               fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
+              width: ScreenUtil.getScaleW(context, double.infinity),
+              height: ScreenUtil.getScaleH(context, double.infinity),
             );
           },
           /// 设置 new SwiperPagination() 展示默认分页指示器

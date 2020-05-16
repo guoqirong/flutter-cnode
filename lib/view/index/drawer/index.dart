@@ -145,7 +145,7 @@ class _MyDrawerState extends State<MyDrawer> {
           leading: Icon(Icons.notifications),
           title: Text('我的消息'),
           trailing: Container(
-            width: SpUtil.getString('messageCount').isNotEmpty && SpUtil.getString('messageCount') != '0' ? 40 : 24,
+            width: ScreenUtil.getScaleW(context, SpUtil.getString('messageCount').isNotEmpty && SpUtil.getString('messageCount') != '0' ? 40 : 24),
             child: Row(
               children: <Widget>[
                 Text(SpUtil.getString('messageCount').isNotEmpty && SpUtil.getString('messageCount') != '0' ? SpUtil.getString('messageCount') : ''),
@@ -169,7 +169,6 @@ class _MyDrawerState extends State<MyDrawer> {
       ],
     );
   }
-
   
   showLogoutDialog(BuildContext context)  {
     showDialog<void>(
@@ -216,7 +215,7 @@ class _MyDrawerState extends State<MyDrawer> {
   //     context: context,
   //     builder: (BuildContext context) {
   //       return Container(
-  //         height: 116,
+  //         height: ScreenUtil.getScaleH(context, 116),
   //         child: ListView(
   //           children: <Widget>[
   //             ListTile(

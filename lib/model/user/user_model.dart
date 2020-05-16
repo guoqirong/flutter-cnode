@@ -23,7 +23,7 @@ class UserModel extends ViewStateRefreshListViewModel {
       messageCount = await MessageModel().findMessageCount(token: token);
       return data;
     }else{
-      return null;
+      return data;
     }
   }
 

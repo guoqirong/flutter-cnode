@@ -1,6 +1,8 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cnode/model/user/user_model.dart';
 import 'package:flutter_cnode/utils/string_util.dart';
+import 'package:flutter_cnode/utils/toast_util.dart';
 import 'package:flutter_cnode/widget/form_widget.dart';
 
 class LoginFormPage extends StatefulWidget {
@@ -58,7 +60,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10),
-                    height: 48,
+                    height: ScreenUtil.getScaleH(context, 42),
                     width: MediaQuery.of(context).size.width,
                     child: RaisedButton(
                       disabledColor: Colors.lightBlueAccent,
@@ -68,8 +70,8 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           isSubmit ? Container(
-                            height: 26,
-                            width: 26,
+                            height: ScreenUtil.getScaleH(context, 24),
+                            width: ScreenUtil.getScaleW(context, 24),
                             margin: EdgeInsets.only(right: 10),
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
@@ -79,7 +81,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                           Text(
                             '登录',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: ScreenUtil.getScaleSp(context, 16),
                               color: Colors.white,
                             ),
                           )
@@ -96,6 +98,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                             if (data['success']) {
                               Navigator.pop(context, accessToken);
                             } else {
+                              ToastUtil.show(data['error_msg'], duration: 2000);
                               setState(() {
                                 isSubmit = false;
                               });

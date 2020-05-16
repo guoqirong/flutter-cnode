@@ -35,14 +35,14 @@ class SkeletonUser extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Container(
-                  height: 96,
-                  width: 96,
-                  margin: EdgeInsets.only(bottom: 26),
+                  height: 60,
+                  width: 60,
+                  margin: EdgeInsets.only(bottom: 18),
                   decoration: SkeletonDecoration(isCircle: true, isDark: isDark),
                 ),
                 Container(
-                  height: 20,
-                  width: 90,
+                  height: 16,
+                  width: 60,
                   margin: EdgeInsets.only(bottom: 26),
                   decoration: SkeletonDecoration(isDark: isDark),
                 ),
@@ -50,12 +50,12 @@ class SkeletonUser extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
-                      height: 28,
+                      height: 20,
                       width: 100,
                       decoration: SkeletonDecoration(isDark: isDark),
                     ),
                     Container(
-                      height: 28,
+                      height: 20,
                       width: 100,
                       decoration: SkeletonDecoration(isDark: isDark),
                     ),

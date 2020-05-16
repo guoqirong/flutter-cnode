@@ -1,4 +1,5 @@
 
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cnode/config/config.dart';
 import 'package:flutter_cnode/utils/image_util.dart';
@@ -15,15 +16,15 @@ class PageNotFoundWidget extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        width: double.infinity,
+        width: ScreenUtil.getScaleW(context, double.infinity),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SvgPicture.asset(
               ImageUtil.getImgSvgPath("hint"),
-              width: 80,
-              height: 80,
+              width: ScreenUtil.getScaleW(context, 60),
+              height: ScreenUtil.getScaleH(context, 60),
             ),
             Gaps.vGap16,
             Text(
@@ -51,15 +52,15 @@ class PageBuildingWidget extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        width: double.infinity,
+        width: ScreenUtil.getScaleW(context, double.infinity),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SvgPicture.asset(
               ImageUtil.getImgSvgPath("hint"),
-              width: 80,
-              height: 80,
+              width: ScreenUtil.getScaleW(context, 60),
+              height: ScreenUtil.getScaleH(context, 60),
             ),
             Gaps.vGap16,
             Text(

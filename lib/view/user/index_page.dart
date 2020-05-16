@@ -37,15 +37,15 @@ class _UserIndexPageState extends State<UserIndexPage> {
           return Column(
             children: <Widget>[
               Container(
-                height: 200,
+                height: ScreenUtil.getScaleH(context, 140),
                 width: MediaQuery.of(context).size.width,
                 color: Theme.of(context).primaryColor.withAlpha(200),
                 padding: EdgeInsets.only(top: 24),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: 96,
-                      width: 96,
+                      height: ScreenUtil.getScaleH(context, 60),
+                      width: ScreenUtil.getScaleW(context, 60),
                       margin: EdgeInsets.only(bottom: 16),
                       child: CircleAvatar(
                         backgroundImage: NetworkImage(model.userDate['avatar_url']??''),
@@ -56,14 +56,14 @@ class _UserIndexPageState extends State<UserIndexPage> {
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        fontSize: ScreenUtil.getScaleSp(context, 20),
                       ),
                     ),
                   ],
                 ),
               ),
               Container(
-                height: 56,
+                height: ScreenUtil.getScaleH(context, 40),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   border: Border(bottom: BorderSide(width: 1, color: Colors.blueGrey[400])),
@@ -78,10 +78,10 @@ class _UserIndexPageState extends State<UserIndexPage> {
                         });
                       },
                       child: Container(
-                        height: 56,
+                        height: ScreenUtil.getScaleH(context, 40),
                         width: MediaQuery.of(context).size.width / 2 - 1,
                         alignment: Alignment.center,
-                        child: Text('我的话题', style: TextStyle(fontSize: 18)),
+                        child: Text('我的话题', style: TextStyle(fontSize: ScreenUtil.getScaleSp(context, 14))),
                         decoration: changIndex == 1 ? BoxDecoration(
                           border: Border(bottom: BorderSide(width: 2, color: Colors.blue)),
                         ) : null,
@@ -101,10 +101,10 @@ class _UserIndexPageState extends State<UserIndexPage> {
                         });
                       },
                       child: Container(
-                        height: 56,
+                        height: ScreenUtil.getScaleH(context, 40),
                         width: MediaQuery.of(context).size.width / 2 - 1,
                         alignment: Alignment.center,
-                        child: Text('我的回复', style: TextStyle(fontSize: 18)),
+                        child: Text('我的回复', style: TextStyle(fontSize: ScreenUtil.getScaleSp(context, 14))),
                         decoration: changIndex == 2 ? BoxDecoration(
                           border: Border(bottom: BorderSide(width: 2, color: Colors.blue)),
                         ) : null,
